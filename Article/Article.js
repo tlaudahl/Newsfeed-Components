@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Travis Laudahl',
+    date: 'July 12th, 1995',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +128,62 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articles = document.querySelector('.articles');
+
+function articleComponent(data) {
+  // article div
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+
+  // Title
+  const h2 = document.createElement('h2');
+  h2.textContent = data.title;
+  
+  articleDiv.appendChild(h2);
+
+  // Date
+  const headerDate = document.createElement('h2');
+  headerDate.classList.add('date');
+  headerDate.textContent = data.date;
+
+  articleDiv.appendChild(headerDate);
+
+  // First paragraph
+  const paragraph1st = document.createElement('p');
+  paragraph1st.textContent = data.firstParagraph;
+
+  articleDiv.appendChild(paragraph1st);
+
+  // Second paragraph
+  const paragraph2nd = document.createElement('p');
+  paragraph2nd.textContent = data.secondParagraph;
+
+  articleDiv.appendChild(paragraph2nd);
+
+  // Third paragraph
+  const paragraph3rd = document.createElement('p');
+  paragraph3rd.textContent = data.thirdParagraph;
+
+  articleDiv.appendChild(paragraph3rd);
+
+  // Button
+  const button = document.createElement('span');
+  button.classList.add('expandButton');
+  button.textContent = 'Expand';
+  articleDiv.appendChild(button);
+
+  // Button event
+  button.addEventListener('click', e => {
+    articleDiv.classList.toggle('article-open');
+    articleDiv.classList.toggle('close');
+  })
+
+  return articleDiv;
+}
+
+data.forEach(item => {
+  articles.appendChild(articleComponent(item));
+})
+
+
