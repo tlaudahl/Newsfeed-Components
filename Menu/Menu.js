@@ -51,9 +51,22 @@ function createMenu(arr) {
     unorderedList.appendChild(listItem);
   })
 
-  menuButton.addEventListener('click', e => {
-    console.log('Hello');
-    menuDiv.classList.toggle('menu--open');
+  // menuButton.addEventListener('click', e => {
+  //   menuDiv.classList.toggle('menu--open');
+  // })
+
+  $(menuButton).click(function(e) {
+    if ($(menuDiv).hasClass('menu--open')) {
+      $(menuDiv).fadeOut(1000, function() {
+        $(menuDiv).removeClass('menu--open');
+        console.log('Closed');
+      });
+    } else {
+      $(menuDiv).fadeIn(1000, function() {
+        $(menuDiv).addClass('menu--open');
+        console.log('Opened');
+      })
+    }
   })
 
   return menuDiv; 
